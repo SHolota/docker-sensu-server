@@ -40,13 +40,13 @@ docker run -d \
 	sgolota/sensu-server
 ```
 Once your container is running all you need to do:
-find container id
+- `find container id`
 ```
 $ docker ps
 CONTAINER ID        IMAGE NAMES ...
 3e955b3a7744        trmb/sensu  ...
 ```
-and start script /tmp/start.sh
+- `and start script /tmp/start.sh`
 ```
 $ docker exec 3e955b3a7744 /tmp/start.sh
 ```
