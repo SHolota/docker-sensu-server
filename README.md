@@ -37,7 +37,7 @@ docker run -d \
 	-p 6379:6379 \
 	-v /srv/sensu/config/conf.d:/etc/sensu/conf.d \
 	-v /srv/sensu/config/handlers:/etc/sensu/handlers \
-	sgolota/sensu-server
+	sgolota/docker-sensu-server
 ```
 Once your container is running all you need to do:
 - `find container id`
