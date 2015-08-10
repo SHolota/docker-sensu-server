@@ -1,0 +1,89 @@
+{
+  "checks": {
+    "vmstat_metrics": {
+      "type": "metric",
+      "handlers": ["graphite_tcp"], 
+      "command": "/etc/sensu/plugins/vmstat-metrics.rb --scheme server.:::name:::",
+      "interval": 60,
+      "subscribers": ["all"]
+    },
+    "load-metrics": {
+      "type": "metric",
+      "handlers": ["graphite_tcp"], 
+      "command": "/etc/sensu/plugins/load-metrics.rb --scheme server.:::name:::",
+      "interval": 60,
+      "subscribers": ["all"]
+    },
+    "disk-capacity-metrics": {
+      "type": "metric",
+      "handlers": ["graphite_tcp"], 
+      "command": "/etc/sensu/plugins/disk-capacity-metrics.rb --scheme server.:::name:::",
+      "interval": 60,
+      "subscribers": ["all"]
+    },
+    "disk-usage-metrics": {
+      "type": "metric",
+      "handlers": ["graphite_tcp"], 
+      "command": "/etc/sensu/plugins/disk-usage-metrics.rb --scheme server.:::name:::",
+      "interval": 60,
+      "subscribers": ["all"]
+    },
+    "interface-metrics": {
+      "type": "metric",
+      "handlers": ["graphite_tcp"], 
+      "command": "/etc/sensu/plugins/interface-metrics.rb --scheme server.:::name:::.interface",
+      "interval": 60,
+      "subscribers": ["all"]
+    },
+    "uptime-metrics": {
+      "type": "metric",
+      "handlers": ["elasticsearch"], 
+      "command": "/etc/sensu/plugins/uptime-metrics.py",
+      "interval": 300,
+      "subscribers": ["upt"]
+    },
+    "user-pct-usage-metrics": {
+      "type": "metric",
+      "handlers": ["graphite_tcp"], 
+      "command": "/etc/sensu/plugins/user-pct-usage-metrics.rb --scheme server.:::name:::.usage_perc",
+      "interval": 60,
+      "subscribers": ["all"]
+    },
+    "memory-metrics": {
+      "type": "metric",
+      "handlers": ["graphite_tcp"], 
+      "command": "/etc/sensu/plugins/memory-metrics.rb --scheme server.:::name:::.memory2",
+      "interval": 60,
+      "subscribers": ["all"]
+    },
+    "check-memory": {
+      "command": "/etc/sensu/plugins/check-memory-pcnt.sh -w 70 -c 80",
+      "handlers": ["mail"], 
+      "interval": 300,
+      "refresh":3600,
+      "subscribers": ["all"]
+    },
+    "check-disks": {
+      "command": "/etc/sensu/plugins/check-disk.rb -w 80 -c 90",
+      "handlers": ["mail"], 
+      "interval": 300,
+      "refresh":3600,
+      "subscribers": ["all"]
+    },
+    "check-swap": {
+      "command": "/etc/sensu/plugins/check-swap-percentage.sh -w 50 -c 70",
+      "handlers": ["mail"], 
+      "interval": 300,
+      "refresh":3600,
+      "subscribers": ["all"]
+    },
+    "check-load": {
+      "command": "/etc/sensu/plugins/check-load.rb -c 10,6,4 -w 5,4,3",
+      "handlers": ["mail"], 
+      "interval": 300,
+      "refresh":3600,
+      "subscribers": ["all"]
+    }
+
+  }  
+}

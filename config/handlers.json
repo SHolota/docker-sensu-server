@@ -1,0 +1,21 @@
+{
+  "handlers": {
+    "graphite_tcp": {
+      "type": "tcp",
+      "socket": {
+        "host": "10.141.30.14",
+        "port": 2003
+      },
+      "mutator": "only_check_output"
+    },
+    "elasticsearch": {
+  		"type": "pipe",
+  		"command": "/etc/sensu/handlers/elasticsearch-metrics.rb"
+  	},
+    "mail": {
+      "type": "pipe",
+      "command": "bsd-mailx -s 'Sensu alert' kv-ut-om-pscore@ukrtelecom.ua",
+      "mutator": "only_check_output",
+      "filter": "check_mail"
+    }
+  }
